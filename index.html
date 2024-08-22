@@ -23,23 +23,27 @@
         #dosbox {
             width: 100%;
             height: 100%;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div id="dosbox"></div>
     <script>
-        Dos(document.getElementById("dosbox")).run("https://cdn.dos.zone/original/2X/9/9ed7eb9c2c441f56656692ed4dc7ab28f58503ce.jsdos");
-
-        // Toggle fullscreen when clicking the game container
-        document.getElementById("dosbox").addEventListener("click", () => {
+        // Function to start the game and toggle fullscreen
+        function startGame() {
+            // Attempt to enter fullscreen automatically
             if (!document.fullscreenElement) {
                 document.getElementById("dosbox").requestFullscreen().catch(err => {
                     console.log(`Error trying to enable fullscreen: ${err.message}`);
                 });
             }
-        });
+
+            // Run the game automatically
+            Dos(document.getElementById("dosbox")).run("https://cdn.dos.zone/original/2X/9/9ed7eb9c2c441f56656692ed4dc7ab28f58503ce.jsdos");
+        }
+
+        // Start the game when the page loads
+        window.onload = startGame;
     </script>
 </body>
 </html>
