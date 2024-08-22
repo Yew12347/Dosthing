@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My DOS Game - Fullscreen</title>
-    <script src="https://js-dos.com/6.22/js-dos.js"></script>
+    <!-- JS-DOS Stylesheet -->
+    <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+    <!-- JS-DOS Script -->
+    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
     <style>
         body, html {
             margin: 0;
@@ -20,27 +23,22 @@
         #dosbox {
             width: 100%;
             height: 100%;
-            cursor: pointer; /* For better UX */
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div id="dosbox"></div>
     <script>
-        // Enable JS-DOS with fullscreen support
-        Dos(document.getElementById("dosbox")).ready((fs, main) => {
-            fs.extract("game.zip").then(() => {
-                main(["-c", "game.exe"]);
-            });
+        Dos(document.getElementById("dosbox")).run("https://cdn.dos.zone/original/2X/9/9ed7eb9c2c441f56656692ed4dc7ab28f58503ce.jsdos");
 
-            // Add event listener to toggle fullscreen on click
-            document.getElementById("dosbox").addEventListener("click", () => {
-                if (!document.fullscreenElement) {
-                    document.getElementById("dosbox").requestFullscreen().catch(err => {
-                        console.log(`Error trying to enable fullscreen: ${err.message}`);
-                    });
-                }
-            });
+        // Toggle fullscreen when clicking the game container
+        document.getElementById("dosbox").addEventListener("click", () => {
+            if (!document.fullscreenElement) {
+                document.getElementById("dosbox").requestFullscreen().catch(err => {
+                    console.log(`Error trying to enable fullscreen: ${err.message}`);
+                });
+            }
         });
     </script>
 </body>
